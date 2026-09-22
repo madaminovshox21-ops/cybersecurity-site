@@ -1,43 +1,5 @@
-const status = document.querySelector('.status-dot');
-const dashboard = document.querySelector('.dashboard-main');
-
-// A subtle interactive parallax effect keeps the 3D security dashboard alive.
-const visual = document.querySelector('.hero-visual');
-if (visual && dashboard && window.matchMedia('(pointer:fine)').matches) {
-  visual.addEventListener('pointermove', (event) => {
-    const rect = visual.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    dashboard.style.transform = `rotateY(${x * -20 - 14}deg) rotateX(${y * -12 + 7}deg) rotateZ(-3deg) translateZ(12px)`;
-  });
-
-  visual.addEventListener('pointerleave', () => {
-    dashboard.style.transform = '';
-  });
-}
-
-// Gives the live status indicator a gentle pulse without external dependencies.
-if (status) {
-  setInterval(() => {
-    status.style.opacity = status.style.opacity === '0.45' ? '1' : '0.45';
-  }, 1100);
-}
-
-// Smoothly reveal content cards as they enter the viewport.
-const revealItems = document.querySelectorAll('.info-card, .glass-panel, .cta-band');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.animate(
-        [
-          { opacity: 0, transform: 'translateY(18px)' },
-          { opacity: 1, transform: 'translateY(0)' },
-        ],
-        { duration: 650, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' },
-      );
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-
-revealItems.forEach((item) => observer.observe(item));
+const canvas=document.querySelector('#particle-canvas');const ctx=canvas.getContext('2d');let particles=[];function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.scale(devicePixelRatio,devicePixelRatio)}function seed(){particles=Array.from({length:Math.min(90,Math.floor(innerWidth/14))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5+.3,v:Math.random()*.35+.08,a:Math.random()*.6+.15}))}function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);particles.forEach((p,i)=>{p.y-=p.v;if(p.y<0)p.y=innerHeight;ctx.beginPath();ctx.fillStyle=`rgba(94,232,255,${p.a})`;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();particles.slice(i+1,i+4).forEach(q=>{const d=Math.hypot(p.x-q.x,p.y-q.y);if(d<105){ctx.strokeStyle=`rgba(94,232,255,${.1*(1-d/105)})`;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}})});requestAnimationFrame(draw)}addEventListener('resize',()=>{resize();seed()});resize();seed();draw();
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.counter').forEach(el=>{const target=Number(el.dataset.target);let n=0;const timer=setInterval(()=>{n+=Math.ceil(target/45);if(n>=target){n=target;clearInterval(timer)}el.textContent=n.toLocaleString()},35)});
+const menu=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav');menu?.addEventListener('click',()=>nav.classList.toggle('open'));document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+document.querySelector('#contact-form')?.addEventListener('submit',e=>{e.preventDefault();const status=document.querySelector('.form-status');status.textContent='Message secured. Our team will contact you shortly.';e.target.reset()});

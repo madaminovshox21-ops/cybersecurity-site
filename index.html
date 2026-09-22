@@ -1,231 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CyberShield | Advanced Security</title>
-    <meta
-      name="description"
-      content="CyberShield provides advanced cybersecurity solutions, managed protection, and secure infrastructure for modern businesses."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <div class="container nav-wrap">
-          <div class="brand" aria-label="CyberShield home">
-            <div class="brand-mark">C</div>
-            <span>CyberShield</span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CyberShield protects ambitious teams with intelligent, always-on cybersecurity operations." />
+  <title>CyberShield — Security Beyond Tomorrow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
 
-          <nav class="nav" aria-label="Main navigation">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <a class="button button-outline" href="#contact">Book a Call</a>
-        </div>
-      </header>
-
-      <main>
-        <section id="home" class="hero">
-          <div class="container hero-grid">
-            <div class="hero-copy">
-              <div class="eyebrow">24/7 Threat Monitoring</div>
-              <h1>Protecting your digital future with proactive security.</h1>
-              <p>
-                We help businesses defend critical systems, reduce attack surface,
-                and stay resilient against ransomware, phishing, and insider risks.
-              </p>
-
-              <div class="hero-actions">
-                <a class="button button-primary" href="#contact">Request a Security Review</a>
-                <a class="button button-secondary" href="#services">Explore Services</a>
-              </div>
-
-              <ul class="stat-row" aria-label="Key results">
-                <li><strong>99.99%</strong><span>Uptime assurance</span></li>
-                <li><strong>24/7</strong><span>Threat monitoring</span></li>
-                <li><strong>3x</strong><span>Faster incident response</span></li>
-              </ul>
-            </div>
-
-            <div class="hero-visual" aria-label="Cybersecurity dashboard illustration">
-              <div class="dashboard-card dashboard-main">
-                <div class="panel-header">
-                  <span class="status-dot"></span>
-                  <span>Security Overview</span>
-                </div>
-
-                <div class="rings">
-                  <div class="ring ring-large">
-                    <div class="ring-inner">94%</div>
-                  </div>
-                  <div class="ring ring-small">
-                    <div class="ring-inner">7.2k</div>
-                  </div>
-                </div>
-
-                <div class="metrics">
-                  <div>
-                    <span class="label">Threats blocked</span>
-                    <strong>1,422</strong>
-                  </div>
-                  <div>
-                    <span class="label">Incidents remediated</span>
-                    <strong>27</strong>
-                  </div>
-                </div>
-              </div>
-
-              <div class="floating-card card-top">
-                <span class="mini-tag">Live</span>
-                <strong>Endpoint Defense</strong>
-                <small>Mitigation active</small>
-              </div>
-
-              <div class="floating-card card-bottom">
-                <span class="mini-tag alt">Monitoring</span>
-                <strong>Global Response</strong>
-                <small>6 regions secured</small>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="partners">
-          <div class="container partners-row">
-            <span>Trusted by security-focused teams</span>
-            <div class="partner-logos" aria-label="Partner companies">
-              <span>Northstar</span>
-              <span>Redline</span>
-              <span>HexaCore</span>
-              <span>Verity</span>
-              <span>Guardian</span>
-            </div>
-          </div>
-        </section>
-
-        <section id="services" class="services section-block">
-          <div class="container">
-            <div class="section-head">
-              <div class="eyebrow">Our services</div>
-              <h2>Security operations built for modern risk.</h2>
-            </div>
-
-            <div class="card-grid">
-              <article class="info-card">
-                <div class="icon">01</div>
-                <h3>Managed Detection</h3>
-                <p>
-                  Continuous monitoring, threat triage, and rapid incident response to stop attacks before impact.
-                </p>
-              </article>
-
-              <article class="info-card">
-                <div class="icon">02</div>
-                <h3>Vulnerability Management</h3>
-                <p>
-                  Identify weak points across infrastructure, systems, and applications with expert-led remediation.
-                </p>
-              </article>
-
-              <article class="info-card">
-                <div class="icon">03</div>
-                <h3>Cloud Security</h3>
-                <p>
-                  Protect workloads, identities, and data across AWS, Azure, and hybrid environments.
-                </p>
-              </article>
-
-              <article class="info-card">
-                <div class="icon">04</div>
-                <h3>Incident Response</h3>
-                <p>
-                  Contain, investigate, and recover from cyber incidents with strategic guidance and support.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="about" class="about section-block">
-          <div class="container about-grid">
-            <div class="about-visual">
-              <div class="glass-panel">
-                <div class="panel-row">
-                  <span>Attack Surface</span>
-                  <strong>Reduced by 38%</strong>
-                </div>
-                <div class="progress-line"><span></span></div>
-                <div class="panel-metrics">
-                  <span>Firewall coverage</span>
-                  <strong>96%</strong>
-                </div>
-                <div class="panel-metrics">
-                  <span>Patch compliance</span>
-                  <strong>92%</strong>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-copy">
-              <div class="eyebrow">Why choose us</div>
-              <h2>Focused protection. Clear communication. Measurable outcomes.</h2>
-              <p>
-                CyberShield partners with organizations that need a trusted security program without the delays of traditional consulting cycles. We align people, technology, and process to reduce operational risk and protect business continuity.
-              </p>
-              <ul class="check-list">
-                <li>Executive-ready security reporting</li>
-                <li>Custom protection roadmap</li>
-                <li>Hands-on remediation guidance</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="cta-band">
-          <div class="container cta-wrap">
-            <div>
-              <div class="eyebrow">Need a security partner?</div>
-              <h2>Let’s harden your environment.</h2>
-            </div>
-            <a class="button button-primary" href="#contact">Talk to an Expert</a>
-          </div>
-        </section>
-      </main>
-
-      <footer id="contact" class="footer">
-        <div class="container footer-grid">
-          <div>
-            <div class="brand footer-brand">
-              <div class="brand-mark">C</div>
-              <span>CyberShield</span>
-            </div>
-            <p>Security strategy and operations for teams that cannot afford downtime.</p>
-          </div>
-
-          <div class="footer-card">
-            <h3>Contact</h3>
-            <ul>
-              <li>Email: hello@cybershield.example</li>
-              <li>Phone: +1 (415) 555-0134</li>
-              <li>Office: San Francisco, CA</li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home"><span class="brand-mark">⌁</span><span>CYBER<span class="accent">SHIELD</span></span></a>
+      <button class="menu-toggle" aria-label="Open navigation">☰</button>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#pricing">Plans</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="button button-outline nav-cta" href="#contact">Secure your space <span>↗</span></a>
     </div>
+  </header>
 
-    <script src="script.js"></script>
-  </body>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse"></span> SYSTEM STATUS: PROTECTED</div>
+          <h1>Security beyond <span>tomorrow.</span></h1>
+          <p>We build intelligent defense systems for the world's most ambitious teams. Stay ahead of the threat curve with security that thinks in real time.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#contact">Start protecting <span>↗</span></a><a class="text-link" href="#services">Explore capabilities <span>→</span></a></div>
+          <div class="trust-line"><div class="avatars"><i>JD</i><i>AM</i><i>RK</i><i>+</i></div><span>Trusted by 250+ security-first teams</span></div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hud-orbit orbit-a"></div><div class="hud-orbit orbit-b"></div>
+          <div class="hud-core"><div class="core-ring"><span>CS</span></div><div class="core-label">THREAT<br /><b>NEUTRALIZED</b></div></div>
+          <div class="hud-card hud-card-top"><span class="hud-label">LIVE MONITOR</span><strong>24/7 <em>ONLINE</em></strong><small><span class="mini-dot"></span> All systems operational</small></div>
+          <div class="hud-card hud-card-right"><span class="hud-label">THREATS BLOCKED</span><strong class="counter" data-target="1422">0</strong><div class="sparkline"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="hud-card hud-card-bottom"><span class="hud-label">GLOBAL COVERAGE</span><strong>99.98<em>%</em></strong><small>↑ 12.4% this month</small></div>
+          <div class="crosshair crosshair-one">＋</div><div class="crosshair crosshair-two">＋</div>
+        </div>
+      </div>
+      <div class="container ticker"><span>▣ CYBER INTELLIGENCE / 01</span><span>◎ ZERO TRUST / 02</span><span>◈ QUANTUM READY / 03</span><span>✦ HUMAN-FIRST / 04</span></div>
+    </section>
+
+    <section id="services" class="section-block services"><div class="container"><div class="section-head reveal"><div class="eyebrow">/// OUR CAPABILITIES</div><h2>One step ahead.<br /><span>Always.</span></h2><p>From first signal to final resolution, our platform gives your team the clarity and control to move with confidence.</p></div><div class="service-grid">
+      <article class="service-card reveal"><span class="card-number">01</span><div class="service-icon">◉</div><h3>Threat Intelligence</h3><p>Turn global signals into actionable intelligence before threats reach your perimeter.</p><a href="#contact">Learn more <span>↗</span></a></article>
+      <article class="service-card reveal"><span class="card-number">02</span><div class="service-icon">⌬</div><h3>Incident Response</h3><p>Contain, investigate, and recover with a response team that moves at machine speed.</p><a href="#contact">Learn more <span>↗</span></a></article>
+      <article class="service-card reveal"><span class="card-number">03</span><div class="service-icon">◌</div><h3>Cloud Defense</h3><p>Protect every workload, identity, and data point across your cloud environment.</p><a href="#contact">Learn more <span>↗</span></a></article>
+      <article class="service-card reveal"><span class="card-number">04</span><div class="service-icon">◈</div><h3>Security Architecture</h3><p>Design resilient systems that make security a competitive advantage, not a bottleneck.</p><a href="#contact">Learn more <span>↗</span></a></article>
+    </div></div></section>
+
+    <section id="about" class="section-block about"><div class="container about-grid"><div class="about-visual reveal"><div class="terminal"><div class="terminal-top"><span></span><span></span><span></span><b>cybershield / defense-core</b></div><div class="terminal-body"><p><i>root@cybershield</i>:~$ initialize_defense</p><p class="green">[OK] Neural firewall online</p><p class="green">[OK] Global nodes connected: 247</p><p class="green">[OK] Zero-day shield active</p><p class="yellow">[INFO] Scanning threat surface...</p><p>████████████████████ <b>100%</b></p><p class="cursor">_</p></div></div></div><div class="about-copy reveal"><div class="eyebrow">/// THE CYBERSHIELD DIFFERENCE</div><h2>Built for the<br /><span>unknown.</span></h2><p>Threats evolve every second. Your defense should too. CyberShield combines autonomous intelligence with human expertise to create security that learns, adapts, and never sleeps.</p><ul class="check-list"><li>Autonomous threat detection</li><li>Expert human response</li><li>Transparent, real-time insights</li></ul><a class="text-link" href="#contact">Meet the team <span>→</span></a></div></div></section>
+
+    <section id="pricing" class="section-block pricing"><div class="container"><div class="section-head centered reveal"><div class="eyebrow">/// SIMPLE, POWERFUL PROTECTION</div><h2>Choose your level<br /><span>of defense.</span></h2></div><div class="pricing-grid">
+      <article class="price-card reveal"><div class="price-top"><span>ESSENTIAL</span><span class="price-icon">◒</span></div><h3>Foundation</h3><p>Core protection for growing teams.</p><div class="price">$499 <small>/ month</small></div><a class="button button-secondary" href="#contact">Get started</a><ul><li>24/7 threat monitoring</li><li>Monthly security report</li><li>Email support</li></ul></article>
+      <article class="price-card featured reveal"><div class="popular">MOST POPULAR</div><div class="price-top"><span>ADVANCED</span><span class="price-icon">◉</span></div><h3>Sentinel</h3><p>Complete defense for scaling teams.</p><div class="price">$1,499 <small>/ month</small></div><a class="button button-primary" href="#contact">Get started</a><ul><li>Everything in Foundation</li><li>24/7 incident response</li><li>Cloud security posture</li></ul></article>
+      <article class="price-card reveal"><div class="price-top"><span>ENTERPRISE</span><span class="price-icon">◈</span></div><h3>Fortress</h3><p>Strategic resilience at global scale.</p><div class="price">Custom <small>tailored to you</small></div><a class="button button-secondary" href="#contact">Talk to an expert</a><ul><li>Everything in Sentinel</li><li>Virtual CISO team</li><li>Global compliance support</li></ul></article>
+    </div></div></section>
+
+    <section class="testimonials section-block"><div class="container testimonial-wrap reveal"><div class="quote-mark">“</div><blockquote>CyberShield didn't just secure our infrastructure. They gave our entire team the confidence to build faster.</blockquote><div class="quote-author"><div class="author-avatar">AL</div><div><strong>Alex Liu</strong><span>VP Engineering, Northstar</span></div></div><div class="quote-dots"><b></b><i></i><i></i></div></div></section>
+
+    <section id="contact" class="section-block contact"><div class="container contact-grid"><div class="contact-copy reveal"><div class="eyebrow">/// YOUR NEXT MOVE</div><h2>Ready to make<br /><span>security a superpower?</span></h2><p>Tell us what you're building. We'll show you how to protect it.</p><div class="contact-meta"><span>✉</span><a href="mailto:hello@cybershield.example">hello@cybershield.example</a></div><div class="contact-meta"><span>◉</span><span>San Francisco · London · Singapore</span></div></div><form class="contact-form reveal" id="contact-form"><label>Name<input name="name" type="text" placeholder="Your name" required /></label><label>Work email<input name="email" type="email" placeholder="you@company.com" required /></label><label>How can we help?<textarea name="message" rows="4" placeholder="Tell us about your security goals" required></textarea></label><button class="button button-primary" type="submit">Send secure message <span>↗</span></button><p class="form-status" role="status"></p></form></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-wrap"><a class="brand" href="#home"><span class="brand-mark">⌁</span><span>CYBER<span class="accent">SHIELD</span></span></a><span>© 2024 CyberShield. Defense for what comes next.</span><div><a href="#">Privacy</a><a href="#">Terms</a></div></div></footer>
+  <script src="script.js"></script>
+</body>
 </html>
