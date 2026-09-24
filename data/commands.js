@@ -76,6 +76,25 @@ window.COMMANDS = [
     { cmd: "sudo fail2ban-client status sshd", desc: "fail2ban qaysi IP larni bloklaganini ko‘rsatadi." },
     { cmd: "sudo dpkg-reconfigure unattended-upgrades", desc: "Avtomatik xavfsizlik yangilanishlarini yoqadi." }
   ]},
+  { cat: "Git (xavfsizlik bilan)", items: [
+    { cmd: "git status && git diff", desc: "Commit qilishdan oldin o‘zgarishlarni ko‘rib chiqing." },
+    { cmd: "git log --oneline --graph --all", desc: "Tarixni qisqa va vizual ko‘rish." },
+    { cmd: "git checkout -b yangi-branch", desc: "Yangi ish branchi yaratish." },
+    { cmd: "git commit -m \"aniq xabar\"", desc: "Commit — sirlar tushmaganini tekshirib." },
+    { cmd: "git rm --cached .env && echo .env >> .gitignore", desc: "Xato qo‘shilgan sirni kuzatuvdan olib tashlash." },
+    { cmd: "gitleaks detect --source . -v", desc: "Tarixdan sizib chiqqan kalitlarni qidirish." },
+    { cmd: "git revert HEAD", desc: "Oxirgi commitni xavfsiz bekor qilish (tarixni buzmasdan)." }
+  ]},
+  { cat: "Docker (asosiy va xavfsizlik)", items: [
+    { cmd: "docker ps -a", desc: "Barcha konteynerlar (ishlayotgan va to‘xtaganlar)." },
+    { cmd: "docker images", desc: "Yuklab olingan obrazlar ro‘yxati." },
+    { cmd: "docker run --rm -it ubuntu bash", desc: "Vaqtinchalik konteynerda ishlash (chiqqach o‘chadi)." },
+    { cmd: "docker run --read-only --cap-drop ALL nginx", desc: "Cheklangan huquqli, o‘qishga-mo‘ljallangan konteyner." },
+    { cmd: "docker logs -f mening-konteyner", desc: "Konteyner loglarini jonli kuzatish." },
+    { cmd: "docker exec -it mening-konteyner sh", desc: "Ishlab turgan konteyner ichiga kirish." },
+    { cmd: "trivy image nginx:latest", desc: "Obrazdagi zaifliklarni skanerlash." },
+    { cmd: "docker scout cves mening-obraz", desc: "Obrazdagi maʼlum CVE lar hisoboti." }
+  ]},
   { cat: "Kod va konteyner xavfsizligi", items: [
     { cmd: "npm audit", desc: "Node.js loyihasidagi zaif paketlarni topadi." },
     { cmd: "pip-audit", desc: "Python bog‘liqliklaridagi zaifliklar." },

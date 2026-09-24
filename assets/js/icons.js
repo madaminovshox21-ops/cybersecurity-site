@@ -12,4 +12,6 @@
   window.iconCheck = function () { return svg('<path d="m5 12 5 5L20 7"/>'); };
   window.iconSearch = function () { return svg('<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>'); };
   window.iconCopy = function () { return svg('<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>'); };
+  window.iconCode = function () { return svg('<path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/>'); };
+  window.iconArticle = function () { return svg('<path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M8 7h8M8 11h8M8 15h5"/>'); };
 })();

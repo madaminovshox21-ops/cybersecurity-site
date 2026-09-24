@@ -82,6 +82,8 @@
       { ic: iconBook(), h: "O‘quv darsliklar", p: "Asoslardan ilg‘or himoyagacha — o‘zbek tilida, amaliy misollar bilan.", href: "#/darsliklar", more: "Darslarni ko‘rish" },
       { ic: iconTerminal(), h: "Buyruqlar bazasi", p: "Tarmoq, log tahlili va mustahkamlash uchun tayyor buyruqlar, nusxa olish bilan.", href: "#/buyruqlar", more: "Buyruqlar" },
       { ic: iconTools(), h: "Amaliy vositalar", p: "Parol kuchi, xesh generatori, subnet kalkulyatori va portlar maʼlumotnomasi.", href: "#/vositalar", more: "Vositalar" },
+      { ic: iconCode(), h: "Dasturlash tillari", p: "Python, JavaScript, Bash, SQL va Go’da xavfsiz kod: xato va to‘g‘ri namuna yonma-yon.", href: "#/tillar", more: "Kod namunalari" },
+      { ic: iconArticle(), h: "Maqolalar", p: "Kiberxavfsizlik, AI va dasturchilar uchun chuqurroq tahliliy maqolalar.", href: "#/maqolalar", more: "O‘qish" },
       { ic: iconChip(), h: "AI va xavfsizlik", p: "Sun’iy intellekt himoyada va hujumda: prompt injection, deepfake, LLM xavflari.", href: "#/ai", more: "Batafsil" },
       { ic: iconNews(), h: "Yangiliklar va saboqlar", p: "Muhim hodisalar tarixi, mashhur CVE lar va ulardan olingan saboqlar.", href: "#/yangiliklar", more: "O‘qish" },
       { ic: iconQuiz(), h: "Bilim testi", p: "O‘rganganingizni 15 savollik test bilan sinab ko‘ring va tahlil oling.", href: "#/test", more: "Testni boshlash" }
@@ -104,8 +106,8 @@
         '<div class="hero-stats">' +
           '<div><b>' + totalLessons + '</b><span>ta to‘liq dars</span></div>' +
           '<div><b>' + (window.COMMANDS ? window.COMMANDS.reduce(function (a, c) { return a + c.items.length; }, 0) : 0) + '</b><span>ta buyruq</span></div>' +
-          '<div><b>' + (window.GLOSSARY ? window.GLOSSARY.length : 0) + '</b><span>ta atama</span></div>' +
-          '<div><b>100%</b><span>o‘zbek tilida</span></div>' +
+          '<div><b>' + (window.ARTICLES ? window.ARTICLES.length : 0) + '</b><span>ta maqola</span></div>' +
+          '<div><b>' + (window.LANGUAGES ? window.LANGUAGES.length : 0) + '</b><span>ta til</span></div>' +
         '</div></div>' +
         '<div><div class="terminal"><div class="terminal-bar"><i></i><i></i><i></i><span>akademiya — bash</span></div>' +
         '<div class="terminal-body">' + termLines.join("\n") + '</div></div></div>' +
@@ -581,6 +583,67 @@
     return wrap;
   }
 
+  /* ---------- Sahifa: Maqolalar ro‘yxati ---------- */
+  function pageArticles() {
+    var A = window.ARTICLES || [];
+    var wrap = el('<div class="page"><div class="wrap"><div class="page-head"><span class="eyebrow">Bilim bazasi</span><h1>Maqolalar</h1><p>Kiberxavfsizlik, sun’iy intellekt va dasturchilar uchun chuqurroq mavzular. Har biri amaliy misollar bilan.</p></div><div class="lesson-grid" id="artGrid"></div></div></div>');
+    var grid = wrap.querySelector("#artGrid");
+    A.forEach(function (a) {
+      grid.appendChild(el(
+        '<a class="lesson-card" href="#/maqolalar/' + a.id + '">' +
+        '<div class="meta"><span class="chip accent">' + esc(a.cat) + '</span><span>· ' + a.minutes + ' daq</span></div>' +
+        '<h3>' + esc(a.title) + '</h3><p>' + esc(a.summary) + '</p></a>'
+      ));
+    });
+    return wrap;
+  }
+  function pageArticle(id) {
+    var A = window.ARTICLES || [], i = -1;
+    for (var k = 0; k < A.length; k++) if (A[k].id === id) { i = k; break; }
+    if (i < 0) return pageNotFound();
+    var a = A[i];
+    var wrap = el('<div class="page"><div class="wrap"><article class="article" style="margin-inline:auto">' +
+      '<a class="back" style="display:inline-block;margin-bottom:16px;color:var(--muted);text-decoration:none" href="#/maqolalar">← Barcha maqolalar</a>' +
+      '<div class="article-head"><div class="meta"><span class="chip accent">' + esc(a.cat) + '</span><span class="chip">' + a.minutes + ' daqiqa</span><span class="chip">' + esc(a.date) + '</span></div>' +
+      '<h1>' + esc(a.title) + '</h1><p class="lead">' + esc(a.summary) + '</p></div>' +
+      '<div class="prose">' + a.html + '</div></article></div></div>');
+    setTimeout(function () { wireCopyBlocks(wrap); }, 0);
+    return wrap;
+  }
+
+  /* ---------- Sahifa: Dasturlash tillari ---------- */
+  function pageLanguages(sub) {
+    var L = window.LANGUAGES || [];
+    var wrap = el('<div class="page"><div class="wrap"><div class="page-head"><span class="eyebrow">Dasturchilar uchun</span><h1>Xavfsiz kod: tillar bo‘yicha</h1><p>Har bir tilda eng ko‘p uchraydigan xatolar va ularning xavfsiz muqobili. Xavfli va to‘g‘ri kod yonma-yon.</p></div><div class="tool-tabs" id="langTabs"></div><div id="langBody"></div></div></div>');
+    var tabs = wrap.querySelector("#langTabs"), body = wrap.querySelector("#langBody");
+    var cur = L.some(function (x) { return x.id === sub; }) ? sub : (L[0] && L[0].id);
+    L.forEach(function (x) {
+      var b = el('<button class="filter-btn' + (x.id === cur ? " active" : "") + '" data-id="' + x.id + '">' + esc(x.name) + "</button>");
+      b.addEventListener("click", function () { location.hash = "#/tillar/" + x.id; });
+      tabs.appendChild(b);
+    });
+    var lang = L.filter(function (x) { return x.id === cur; })[0];
+    if (lang) {
+      var panel = el('<div></div>');
+      panel.appendChild(el('<div class="panel" style="padding:22px;margin-bottom:16px"><h2 style="font-size:22px;margin-bottom:6px">' + esc(lang.name) + ' <small style="font:500 13px/1 var(--f-mono);color:var(--muted)">' + esc(lang.tag) + '</small></h2><p class="muted" style="max-width:75ch">' + esc(lang.intro) + '</p></div>'));
+      lang.blocks.forEach(function (bl) {
+        var card = el('<div class="panel" style="padding:20px;margin-bottom:14px"><h3 style="font-size:17px;margin-bottom:12px">' + esc(bl.h) + '</h3>' +
+          '<div style="display:grid;gap:10px">' +
+          '<div><div class="lbl" style="color:var(--bad);font-size:12px;font-weight:700;margin-bottom:4px">✕ XAVFLI</div><div class="codeblock"><pre><code>' + esc(bl.bad) + '</code></pre></div></div>' +
+          '<div><div class="lbl" style="color:var(--ok);font-size:12px;font-weight:700;margin-bottom:4px">✓ TO‘G‘RI</div><div class="codeblock"><pre><code>' + esc(bl.good) + '</code></pre></div></div>' +
+          '</div>' + (bl.note ? '<p class="muted" style="font-size:14px;margin-top:10px">💡 ' + esc(bl.note) + '</p>' : "") + '</div>');
+        panel.appendChild(card);
+      });
+      if (lang.tools) {
+        panel.appendChild(el('<div class="panel" style="padding:20px"><h3 style="font-size:16px;margin-bottom:10px">Foydali vositalar</h3><ul class="checklist">' +
+          lang.tools.map(function (t) { return '<li class="ok">' + esc(t) + "</li>"; }).join("") + '</ul></div>'));
+      }
+      body.appendChild(panel);
+    }
+    setTimeout(function () { wireCopyBlocks(body); }, 0);
+    return wrap;
+  }
+
   function pageNotFound() {
     return el('<div class="page"><div class="wrap"><div class="page-head"><h1>Sahifa topilmadi</h1><p>Bunday sahifa yo‘q. <a href="#/">Bosh sahifaga qaytish</a>.</p></div></div></div>');
   }
@@ -619,6 +682,8 @@
     if (!route) { node = pageHome(); }
     else if (route === "darsliklar") { node = seg[1] ? pageLesson(seg[1]) : pageLessons(); title = "Darsliklar — CyberShield"; }
     else if (route === "buyruqlar") { node = pageCommands(); title = "Buyruqlar — CyberShield"; }
+    else if (route === "maqolalar") { node = seg[1] ? pageArticle(seg[1]) : pageArticles(); title = "Maqolalar — CyberShield"; }
+    else if (route === "tillar") { node = pageLanguages(seg[1]); title = "Dasturlash tillari — CyberShield"; }
     else if (route === "yangiliklar") { node = pageNews(); title = "Yangiliklar — CyberShield"; }
     else if (route === "ai") { node = pageAI(); title = "AI va xavfsizlik — CyberShield"; }
     else if (route === "vositalar") { node = pageTools(seg[1]); title = "Vositalar — CyberShield"; }
@@ -648,6 +713,8 @@
   function buildSearchIndex() {
     var idx = [];
     LESSONS.forEach(function (l) { idx.push({ kind: "Dars", title: l.title, sub: l.summary, href: "#/darsliklar/" + l.id }); });
+    (window.ARTICLES || []).forEach(function (a) { idx.push({ kind: "Maqola", title: a.title, sub: a.summary, href: "#/maqolalar/" + a.id }); });
+    (window.LANGUAGES || []).forEach(function (x) { idx.push({ kind: "Til", title: x.name + " — xavfsiz kod", sub: x.tag, href: "#/tillar/" + x.id }); });
     (window.GLOSSARY || []).forEach(function (g) { idx.push({ kind: "Atama", title: g.term, sub: g.def, href: "#/lugat" }); });
     (window.COMMANDS || []).forEach(function (g) { g.items.forEach(function (it) { idx.push({ kind: "Buyruq", title: it.cmd, sub: it.desc, href: "#/buyruqlar" }); }); });
     [["Buyruqlar bazasi", "#/buyruqlar"], ["Parol kuchi", "#/vositalar/parol"], ["Xesh generatori", "#/vositalar/hash"], ["Subnet kalkulyatori", "#/vositalar/subnet"], ["Portlar maʼlumotnomasi", "#/vositalar/portlar"], ["Xavfsizlik tekshiruvi", "#/vositalar/tekshiruv"], ["AI va xavfsizlik", "#/ai"], ["Yangiliklar", "#/yangiliklar"], ["Bilim testi", "#/test"]].forEach(function (p) { idx.push({ kind: "Sahifa", title: p[0], sub: "", href: p[1] }); });
